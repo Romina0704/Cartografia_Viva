@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Cartografia Viva"
+            app:title="Cartografía Viva"
             app:titleTextColor="@android:color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -55,46 +55,14 @@
                 android:padding="12dp">
 
                 <TextView
+                    android:id="@+id/tv_nationality_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nacionalidad: Shuar"
+                    android:text="Selecciona una etnia"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Distance Card Overlay -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_container"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Distancia:"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="388 km"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -107,17 +75,6 @@
             android:orientation="vertical"
             android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent">
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"/>
-            </HorizontalScrollView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -135,26 +92,21 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/tv_narrative_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Narrativa Dinámica"
+                        android:text="Información"
                         android:textColor="@android:color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_narrative_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="El pueblo Shuar, &quot;gente a la cascada sagrada&quot;, guerreros de la selva amazónica."
+                        android:text="Toca un marcador en el mapa para ver los detalles de la etnia o pueblo."
                         android:textColor="#424242" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="#E0E0E0" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

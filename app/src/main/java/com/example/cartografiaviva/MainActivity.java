@@ -1,6 +1,7 @@
 package com.example.cartografiaviva;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,18 +11,23 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
+    private TextView tvNationalityName, tvNarrativeTitle, tvNarrativeDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        tvNationalityName = findViewById(R.id.tv_nationality_name);
+        tvNarrativeTitle = findViewById(R.id.tv_narrative_title);
+        tvNarrativeDescription = findViewById(R.id.tv_narrative_description);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         if (mapFragment != null) {
@@ -32,16 +38,77 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnMarkerClickListener(this);
 
-        // Coordenadas aproximadas del centro de Ecuador
         LatLng ecuador = new LatLng(-1.8312, -78.1834);
-        
-        // Añadir un marcador y mover la cámara
-        mMap.addMarker(new MarkerOptions().position(ecuador).title("Ecuador"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ecuador, 6.5f));
-        
-        // Configuración básica del mapa
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
+
+        agregarEtnias();
+    }
+
+    @Override
+    public boolean onMarkerClick(@NonNull Marker marker) {
+        tvNationalityName.setText("Etnia/Pueblo: " + marker.getTitle());
+        tvNarrativeTitle.setText(marker.getTitle());
+        tvNarrativeDescription.setText(marker.getSnippet());
+        return false;
+    }
+
+    private void agregarEtnias() {
+        // Región Costa (Litoral)
+        mMap.addMarker(new MarkerOptions().position(new LatLng(1.2167, -78.5000))
+                .title("Awá").snippet("Región: Costa. Lengua: Awapit. Ubicación: Carchi, Esmeraldas e Imbabura."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(0.7333, -78.9333))
+                .title("Chachi").snippet("Región: Costa. Lengua: Cha'palaachi. Ubicación: Esmeraldas."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(1.0000, -78.8000))
+                .title("Épera").snippet("Región: Costa. Lengua: Sia Pedee. Ubicación: Esmeraldas."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-0.2521, -79.1714))
+                .title("Tsáchila").snippet("Región: Costa. Lengua: Tsafiki. Ubicación: Santo Domingo."));
+
+        // Región Sierra (Andes) - Pueblos Kichwa
+        mMap.addMarker(new MarkerOptions().position(new LatLng(0.2241, -78.2618))
+                .title("Otavalo").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(0.0402, -78.1450))
+                .title("Kayambi").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-0.1807, -78.4678))
+                .title("Kitu Kara").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-0.9314, -78.6178))
+                .title("Panzaleo").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.2800, -78.6800))
+                .title("Chibuleo").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.2500, -78.5600))
+                .title("Salasaka").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.5905, -79.0024))
+                .title("Waranka").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.6709, -78.6471))
+                .title("Puruhá").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-2.7380, -78.8475))
+                .title("Kañari").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-3.6206, -79.2382))
+                .title("Saraguro").snippet("Región: Sierra. Pueblo Kichwa de la Sierra."));
+
+        // Región Amazónica (Oriente)
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-2.0000, -77.0000))
+                .title("Achuar").snippet("Región: Amazonía. Lengua: Achuar Chicham. Ubicación: Pastaza y Morona Santiago."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-2.1000, -76.4000))
+                .title("Andoa").snippet("Región: Amazonía. Lengua: Andoa. Ubicación: Pastaza."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(0.3500, -77.2500))
+                .title("Cofán (A'i)").snippet("Región: Amazonía. Lengua: A'ingae. Ubicación: Sucumbíos."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(0.1500, -76.3000))
+                .title("Siona").snippet("Región: Amazonía. Lengua: Baicoca. Ubicación: Sucumbíos."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-0.2000, -76.2000))
+                .title("Secoya (Siekopai)").snippet("Región: Amazonía. Lengua: Paicoca. Ubicación: Sucumbíos."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-3.0000, -78.0000))
+                .title("Shuar").snippet("Región: Amazonía. Lengua: Shuar Chicham. Ubicación: Morona Santiago, Zamora, Pastaza."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-2.4000, -76.7000))
+                .title("Shiwiar").snippet("Región: Amazonía. Lengua: Shiwiar Chicham. Ubicación: Pastaza."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.0000, -76.5000))
+                .title("Waorani").snippet("Región: Amazonía. Lengua: Wao Terero. Ubicación: Orellana, Pastaza y Napo."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.8000, -76.6000))
+                .title("Zápara").snippet("Región: Amazonía. Ubicación: Pastaza. Lengua: Patrimonio Cultural de la Humanidad."));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.0000, -77.5000))
+                .title("Kichwa Amazónico").snippet("Región: Amazonía. Ubicación: Napo y Pastaza."));
     }
 }
