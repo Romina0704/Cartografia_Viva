@@ -26,18 +26,17 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- Placeholder for Map -->
-        <ImageView
-            android:id="@+id/map_placeholder"
+        <!-- Google Map Fragment -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:src="@android:drawable/ic_menu_mapmode"
             app:layout_constraintBottom_toTopOf="@+id/bottom_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            tools:layout="@layout/abc_action_bar_title_item" />
 
         <!-- Nationality Selector Card -->
         <com.google.android.material.card.MaterialCardView
@@ -89,6 +88,13 @@
                     android:text="Distancia:"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="388 km"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -118,7 +124,28 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Lugar Sagrado"
+                        app:chipIcon="@android:drawable/ic_menu_myplaces" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Comunidad"
+                        app:chipIcon="@android:drawable/ic_menu_gallery" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fauna/Flora"
+                        app:chipIcon="@android:drawable/ic_menu_camera" />
+                </LinearLayout>
             </HorizontalScrollView>
 
             <com.google.android.material.card.MaterialCardView
@@ -142,12 +169,14 @@
                         android:text="Narrativa Dinámica"
                         android:textColor="@android:color/black"
                         android:textSize="20sp"
-                        android:textStyle="bold" /><![CDATA[
+                        android:textStyle="bold" />
 
-                    \", guerreros de la selva amazónica."
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="El pueblo Shuar, &quot;gente a la cascada sagrada&quot;, guerreros de la selva amazónica."
                         android:textColor="#424242" />
-
-                    ]]>
 
                     <View
                         android:layout_width="match_parent"
