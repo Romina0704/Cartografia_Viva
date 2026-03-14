@@ -1,0 +1,115 @@
+[
+  {
+    "nacionalidad": "Awá",
+    "region": "Costa",
+    "lengua": "Awapit",
+    "latitud": 1.2167,
+    "longitud": -78.5000,
+    "descripcion": "Ubicados principalmente en Carchi, Esmeraldas e Imbabura.",
+    "puntos_interes": [
+      {"nombre": "Reserva Bio-Antropológica Awá", "tipo": "Hito Histórico", "lat": 1.2210, "lng": -78.5120},
+      {"nombre": "Comunidad San Marcos", "tipo": "Asentamiento", "lat": 1.1500, "lng": -78.4200}
+    ]
+  },
+  {
+    "nacionalidad": "Chachi",
+    "region": "Costa",
+    "lengua": "Cha'palaachi",
+    "latitud": 0.7333,
+    "longitud": -78.9333,
+    "descripcion": "Ubicados en la provincia de Esmeraldas.",
+    "puntos_interes": [
+      {"nombre": "Río Canandé", "tipo": "Hito Histórico", "lat": 0.7500, "lng": -79.0000}
+    ]
+  },
+  {
+    "nacionalidad": "Épera",
+    "region": "Costa",
+    "lengua": "Sia Pedee",
+    "latitud": 1.0000,
+    "longitud": -78.8000,
+    "descripcion": "Ubicados en la zona costera de Esmeraldas.",
+    "puntos_interes": [
+      {"nombre": "Comunidad Santa Rosa", "tipo": "Asentamiento", "lat": 1.0200, "lng": -78.8200}
+    ]
+  },
+  {
+    "nacionalidad": "Tsáchila",
+    "region": "Costa",
+    "lengua": "Tsafiki",
+    "latitud": -0.2521,
+    "longitud": -79.1714,
+    "descripcion": "Ubicados en Santo Domingo de los Tsáchilas.",
+    "puntos_interes": [
+      {"nombre": "Museo Etnográfico Tsáchila", "tipo": "Lugar Sagrado", "lat": -0.2600, "lng": -79.1800},
+      {"nombre": "Comunidad Chigüilpe", "tipo": "Hito Histórico", "lat": -0.2450, "lng": -79.1650}
+    ]
+  },
+  {
+    "nacionalidad": "Otavalo",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": 0.2241,
+    "longitud": -78.2618,
+    "descripcion": "Pueblo Kichwa de la Sierra, famosos por su artesanía.",
+    "puntos_interes": [
+      {"nombre": "Plaza de los Ponchos", "tipo": "Hito Histórico", "lat": 0.2260, "lng": -78.2625},
+      {"nombre": "Cascada de Peguche", "tipo": "Lugar Sagrado", "lat": 0.2410, "lng": -78.2370}
+    ]
+  },
+  {
+    "nacionalidad": "Saraguro",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -3.6206,
+    "longitud": -79.2382,
+    "descripcion": "Ubicados en la provincia de Loja.",
+    "puntos_interes": [
+      {"nombre": "Baño del Inca", "tipo": "Lugar Sagrado", "lat": -3.6300, "lng": -79.2500}
+    ]
+  },
+  {
+    "nacionalidad": "Achuar",
+    "region": "Amazonía",
+    "lengua": "Achuar Chicham",
+    "latitud": -2.0000,
+    "longitud": -77.0000,
+    "descripcion": "Ubicados en Pastaza y Morona Santiago.",
+    "puntos_interes": [
+      {"nombre": "Cuenca del Río Pastaza", "tipo": "Hito Histórico", "lat": -2.0500, "lng": -77.1000}
+    ]
+  },
+  {
+    "nacionalidad": "Shuar",
+    "region": "Amazonía",
+    "lengua": "Shuar Chicham",
+    "latitud": -3.0000,
+    "longitud": -78.0000,
+    "descripcion": "Ubicados en Morona Santiago, Zamora y Pastaza.",
+    "puntos_interes": [
+      {"nombre": "Cascada Sagrada Shuar", "tipo": "Lugar Sagrado", "lat": -3.0500, "lng": -78.1000}
+    ]
+  },
+  {
+    "nacionalidad": "Waorani",
+    "region": "Amazonía",
+    "lengua": "Wao Terero",
+    "latitud": -1.0000,
+    "longitud": -76.5000,
+    "descripcion": "Ubicados en Orellana, Pastaza y Napo.",
+    "puntos_interes": [
+      {"nombre": "Parque Nacional Yasuní", "tipo": "Hito Histórico", "lat": -0.9000, "lng": -76.3000}
+    ]
+  },
+  {
+    "nacionalidad": "Zápara",
+    "region": "Amazonía",
+    "lengua": "Zápara",
+    "latitud": -1.8000,
+    "longitud": -76.6000,
+    "descripcion": "Su lengua es Patrimonio Cultural de la Humanidad.",
+    "puntos_interes": [
+      {"nombre": "Territorio Ancestral Zápara", "tipo": "Hito Histórico", "lat": -1.8500, "lng": -76.6500}
+    ]
+  }
+]

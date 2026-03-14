@@ -1,7 +1,9 @@
 package com.example.cartografiaviva;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +17,24 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private TextView tvNationalityName, tvNarrativeTitle, tvNarrativeDescription;
+    private List<Etnia> listaEtnias;
+    private List<Marker> marcadoresPOIs = new ArrayList<>();
+
+    // Ubicación simulada del usuario (Quevedo, Ecuador)
+    private final LatLng ubicacionUsuario = new LatLng(-1.0241, -79.4611);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +53,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
+
+        // 1. Cargar datos del archivo JSON en Assets
+        cargarDatosDesdeJSON();
+    }
+
+    private void cargarDatosDesdeJSON() {
+        try {
+            InputStream is = getAssets().open("etnias.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<Etnia>>(){}.getType();
+            listaEtnias = gson.fromJson(json, listType);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Toast.makeText(this, "Error cargando etnias.json", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -45,108 +81,85 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         mMap.setOnMarkerClickListener(this);
 
-        // Estilo del mapa (puedes personalizarlo más)
+        // Centrar mapa en Ecuador
         LatLng ecuador = new LatLng(-1.8312, -78.1834);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ecuador, 6.5f));
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.getUiSettings().setCompassEnabled(true);
-        mMap.getUiSettings().setMapToolbarEnabled(false);
 
-        agregarEtnias();
+        // Marcador de ubicación del usuario
+        mMap.addMarker(new MarkerOptions()
+                .position(ubicacionUsuario)
+                .title("Tu ubicación actual")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+
+        // 2. Dibujar las nacionalidades del JSON
+        dibujarEtnias();
+    }
+
+    private void dibujarEtnias() {
+        if (listaEtnias == null) return;
+
+        for (Etnia etnia : listaEtnias) {
+            float color;
+            switch (etnia.region) {
+                case "Costa": color = BitmapDescriptorFactory.HUE_AZURE; break;
+                case "Sierra": color = BitmapDescriptorFactory.HUE_ORANGE; break;
+                case "Amazonía": color = BitmapDescriptorFactory.HUE_GREEN; break;
+                default: color = BitmapDescriptorFactory.HUE_RED;
+            }
+
+            Marker m = mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(etnia.latitud, etnia.longitud))
+                    .title(etnia.nacionalidad)
+                    .icon(BitmapDescriptorFactory.defaultMarker(color)));
+
+            if (m != null) m.setTag(etnia);
+        }
     }
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
-        tvNationalityName.setText(getString(R.string.ethnicity_prefix, marker.getTitle()));
-        tvNarrativeTitle.setText(marker.getTitle());
-        tvNarrativeDescription.setText(marker.getSnippet());
-        
-        // Mover cámara suavemente al marcador
+        Object tag = marker.getTag();
+
+        if (tag instanceof Etnia) {
+            Etnia etnia = (Etnia) tag;
+
+            // 3. Cálculo de distancia
+            float[] results = new float[1];
+            Location.distanceBetween(ubicacionUsuario.latitude, ubicacionUsuario.longitude,
+                    etnia.latitud, etnia.longitud, results);
+            float distanciaKm = results[0] / 1000;
+
+            // 4. Actualizar interfaz con prefijo del strings.xml
+            tvNationalityName.setText(getString(R.string.ethnicity_prefix, etnia.nacionalidad));
+            tvNarrativeTitle.setText(getString(R.string.distance_label, distanciaKm));
+            tvNarrativeDescription.setText(etnia.descripcion + "\n\nLengua: " + etnia.lengua);
+
+            // 5. Mostrar Puntos de Interés Dinámicos
+            limpiarPOIsAnteriores();
+            mostrarPuntosDeInteres(etnia);
+        }
+
         mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-        
         return false;
     }
 
-    private void agregarEtnias() {
-        // Región Costa - Color Azul
-        float colorCosta = BitmapDescriptorFactory.HUE_AZURE;
-        mMap.addMarker(new MarkerOptions().position(new LatLng(1.2167, -78.5000))
-                .title("Awá").snippet("Región: Costa. Lengua: Awapit. Ubicación: Carchi, Esmeraldas e Imbabura.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorCosta)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0.7333, -78.9333))
-                .title("Chachi").snippet("Región: Costa. Lengua: Cha'palaachi. Ubicación: Esmeraldas.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorCosta)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(1.0000, -78.8000))
-                .title("Épera").snippet("Región: Costa. Lengua: Sia Pedee. Ubicación: Esmeraldas.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorCosta)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-0.2521, -79.1714))
-                .title("Tsáchila").snippet("Región: Costa. Lengua: Tsafiki. Ubicación: Santo Domingo.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorCosta)));
+    private void mostrarPuntosDeInteres(Etnia etnia) {
+        if (etnia.puntos_interes != null) {
+            for (Etnia.PuntoInteres poi : etnia.puntos_interes) {
+                Marker m = mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(poi.lat, poi.lng))
+                        .title(poi.nombre)
+                        .snippet("Tipo: " + poi.tipo)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                marcadoresPOIs.add(m);
+            }
+        }
+    }
 
-        // Región Sierra - Color Naranja/Amarillo
-        float colorSierra = BitmapDescriptorFactory.HUE_ORANGE;
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0.2241, -78.2618))
-                .title("Otavalo").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0.0402, -78.1450))
-                .title("Kayambi").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-0.1807, -78.4678))
-                .title("Kitu Kara").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-0.9314, -78.6178))
-                .title("Panzaleo").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.2800, -78.6800))
-                .title("Chibuleo").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.2500, -78.5600))
-                .title("Salasaka").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.5905, -79.0024))
-                .title("Waranka").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.6709, -78.6471))
-                .title("Puruhá").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-2.7380, -78.8475))
-                .title("Kañari").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-3.6206, -79.2382))
-                .title("Saraguro").snippet("Región: Sierra. Pueblo Kichwa de la Sierra.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorSierra)));
-
-        // Región Amazónica - Color Verde
-        float colorAmazonia = BitmapDescriptorFactory.HUE_GREEN;
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-2.0000, -77.0000))
-                .title("Achuar").snippet("Región: Amazonía. Lengua: Achuar Chicham. Ubicación: Pastaza y Morona Santiago.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-2.1000, -76.4000))
-                .title("Andoa").snippet("Región: Amazonía. Lengua: Andoa. Ubicación: Pastaza.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0.3500, -77.2500))
-                .title("Cofán (A'i)").snippet("Región: Amazonía. Lengua: A'ingae. Ubicación: Sucumbíos.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0.1500, -76.3000))
-                .title("Siona").snippet("Región: Amazonía. Lengua: Baicoca. Ubicación: Sucumbíos.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-0.2000, -76.2000))
-                .title("Secoya (Siekopai)").snippet("Región: Amazonía. Lengua: Paicoca. Ubicación: Sucumbíos.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-3.0000, -78.0000))
-                .title("Shuar").snippet("Región: Amazonía. Lengua: Shuar Chicham. Ubicación: Morona Santiago, Zamora, Pastaza.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-2.4000, -76.7000))
-                .title("Shiwiar").snippet("Región: Amazonía. Lengua: Shiwiar Chicham. Ubicación: Pastaza.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.0000, -76.5000))
-                .title("Waorani").snippet("Región: Amazonía. Lengua: Wao Terero. Ubicación: Orellana, Pastaza y Napo.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.8000, -76.6000))
-                .title("Zápara").snippet("Región: Amazonía. Ubicación: Pastaza. Lengua: Patrimonio Cultural de la Humanidad.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-1.0000, -77.5000))
-                .title("Kichwa Amazónico").snippet("Región: Amazonía. Ubicación: Napo y Pastaza.")
-                .icon(BitmapDescriptorFactory.defaultMarker(colorAmazonia)));
+    private void limpiarPOIsAnteriores() {
+        for (Marker m : marcadoresPOIs) {
+            m.remove();
+        }
+        marcadoresPOIs.clear();
     }
 }

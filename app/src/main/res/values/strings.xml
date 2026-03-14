@@ -4,4 +4,6 @@
     <string name="information">Información</string>
     <string name="tap_marker_instruction">Toca un marcador en el mapa para ver los detalles de la etnia o pueblo.</string>
     <string name="ethnicity_prefix">Etnia/Pueblo: %1$s</string>
+    <string name="distance_label">Distancia a la comunidad: %.2f km</string>
+    <string name="ethnicity_description_template">%1$s\n\nLengua: %2$s</string>
 </resources>
