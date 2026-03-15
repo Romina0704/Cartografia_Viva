@@ -51,6 +51,15 @@
             android:text="@string/tap_marker_instruction"
             android:textSize="14sp"
             android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_ver_pruebas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Ver Lista de Pruebas"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 </LinearLayout>

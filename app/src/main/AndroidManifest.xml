@@ -16,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CartografiaViva">
 
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBf4DUr2pQ1K-lVPXmGoc7iplkmok7kHTo" />
@@ -26,10 +25,15 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ListaPruebasActivity"
+            android:label="Lista de Pruebas"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>

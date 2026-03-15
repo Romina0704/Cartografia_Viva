@@ -6,4 +6,8 @@
     <string name="ethnicity_prefix">Etnia/Pueblo: %1$s</string>
     <string name="distance_label">Distancia a la comunidad: %.2f km</string>
     <string name="ethnicity_description_template">%1$s\n\nLengua: %2$s</string>
+    <string name="btn_ver_pruebas_text">Ver Lista de Pruebas</string>
+    <string name="api_result_title">Resultado API</string>
+    <string name="confidence_label">Confianza: %.2f%%</string>
+    <string name="profile_prefix">Perfil: %1$s\n\nRasgos:\n</string>
 </resources>
