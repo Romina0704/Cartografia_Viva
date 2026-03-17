@@ -1,0 +1,434 @@
+[
+  {
+    "nacionalidad": "Awá",
+    "region": "Costa",
+    "lengua": "Awapit",
+    "latitud": 1.2167,
+    "longitud": -78.5000,
+    "descripcion": "Ubicados en Carchi, Esmeraldas e Imbabura.",
+    "puntos_interes": [
+      {
+        "nombre": "Reserva Bio-Antropológica Awá",
+        "tipo": "Reserva Natural",
+        "lat": 1.1500,
+        "lng": -78.4500
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Chachi",
+    "region": "Costa",
+    "lengua": "Cha'palaachi",
+    "latitud": 0.7333,
+    "longitud": -78.9333,
+    "descripcion": "Ubicados en Esmeraldas.",
+    "puntos_interes": [
+      {
+        "nombre": "Reserva Ecológica Cotacachi-Cayapas",
+        "tipo": "Área Protegida",
+        "lat": 0.7500,
+        "lng": -78.9000
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Épera",
+    "region": "Costa",
+    "lengua": "Sia Pedee",
+    "latitud": 1.0000,
+    "longitud": -78.8000,
+    "descripcion": "Ubicados en Esmeraldas.",
+    "puntos_interes": [
+      {
+        "nombre": "Comunidad Borbón",
+        "tipo": "Asentamiento Cultural",
+        "lat": 1.0833,
+        "lng": -78.9833
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Tsáchila",
+    "region": "Costa",
+    "lengua": "Tsafiki",
+    "latitud": -0.2521,
+    "longitud": -79.1714,
+    "descripcion": "Ubicados en Santo Domingo.",
+    "puntos_interes": [
+      {
+        "nombre": "Museo Etnográfico Tsáchila",
+        "tipo": "Centro Cultural",
+        "lat": -0.2610,
+        "lng": -79.1850
+      },
+      {
+        "nombre": "Comunidad Chigüilpe",
+        "tipo": "Turismo Comunitario",
+        "lat": -0.2850,
+        "lng": -79.2010
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Otavalo",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": 0.2241,
+    "longitud": -78.2618,
+    "descripcion": "Pueblo kichwa de Imbabura.",
+    "puntos_interes": [
+      {
+        "nombre": "Plaza de los Ponchos",
+        "tipo": "Mercado Artesanal",
+        "lat": 0.2330,
+        "lng": -78.2620
+      },
+      {
+        "nombre": "Cascada de Peguche",
+        "tipo": "Sitio Sagrado",
+        "lat": 0.2410,
+        "lng": -78.2380
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Kayambi",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": 0.0500,
+    "longitud": -78.3500,
+    "descripcion": "Ubicados en Pichincha e Imbabura.",
+    "puntos_interes": [
+      {
+        "nombre": "Museo de la Ciudad Cayambe",
+        "tipo": "Museo",
+        "lat": 0.0410,
+        "lng": -78.1450
+      },
+      {
+        "nombre": "Reloj Solar Quitsato",
+        "tipo": "Monumento",
+        "lat": 0.0000,
+        "lng": -78.1710
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Kitu Kara",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -0.2000,
+    "longitud": -78.5000,
+    "descripcion": "Ubicados en Quito.",
+    "puntos_interes": [
+      {
+        "nombre": "Ruinas de Rumicucho",
+        "tipo": "Sitio Arqueológico",
+        "lat": 0.0110,
+        "lng": -78.4520
+      },
+      {
+        "nombre": "Parque Arqueológico Cochasquí",
+        "tipo": "Sitio Arqueológico",
+        "lat": 0.0510,
+        "lng": -78.3050
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Panzaleo",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -1.2000,
+    "longitud": -78.6000,
+    "descripcion": "Ubicados en Cotopaxi.",
+    "puntos_interes": [
+      {
+        "nombre": "Laguna de Quilotoa",
+        "tipo": "Atractivo Natural",
+        "lat": -0.8500,
+        "lng": -78.9000
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Chibuleo",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -1.2500,
+    "longitud": -78.6200,
+    "descripcion": "Ubicados en Tungurahua.",
+    "puntos_interes": [
+      {
+        "nombre": "Centro de Mercadeo Chibuleo",
+        "tipo": "Comercio Comunitario",
+        "lat": -1.2800,
+        "lng": -78.6500
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Salasaca",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -1.3500,
+    "longitud": -78.5000,
+    "descripcion": "Ubicados en Tungurahua.",
+    "puntos_interes": [
+      {
+        "nombre": "Plaza de Arte Salasaca",
+        "tipo": "Mercado Cultural",
+        "lat": -1.3340,
+        "lng": -78.5640
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Waranka",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -1.6000,
+    "longitud": -79.0000,
+    "descripcion": "Ubicados en Bolívar.",
+    "puntos_interes": [
+      {
+        "nombre": "Centro Histórico de Guaranda",
+        "tipo": "Patrimonio",
+        "lat": -1.5910,
+        "lng": -78.9990
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Puruhá",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -1.6700,
+    "longitud": -78.6500,
+    "descripcion": "Ubicados en Chimborazo.",
+    "puntos_interes": [
+      {
+        "nombre": "Museo de la Concepción",
+        "tipo": "Museo",
+        "lat": -1.6730,
+        "lng": -78.6480
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Kañari",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -2.7380,
+    "longitud": -78.8475,
+    "descripcion": "Ubicados en Cañar y Azuay.",
+    "puntos_interes": [
+      {
+        "nombre": "Complejo Arqueológico Ingapirca",
+        "tipo": "Sitio Histórico",
+        "lat": -2.5430,
+        "lng": -78.8760
+      },
+      {
+        "nombre": "Laguna de Culebrillas",
+        "tipo": "Sitio Sagrado",
+        "lat": -2.4160,
+        "lng": -78.8660
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Saraguro",
+    "region": "Sierra",
+    "lengua": "Kichwa",
+    "latitud": -3.6206,
+    "longitud": -79.2382,
+    "descripcion": "Ubicados en Loja.",
+    "puntos_interes": [
+      {
+        "nombre": "Baño del Inka",
+        "tipo": "Sitio Arqueológico",
+        "lat": -3.6150,
+        "lng": -79.2450
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Achuar",
+    "region": "Amazonía",
+    "lengua": "Achuar Chicham",
+    "latitud": -2.0000,
+    "longitud": -77.0000,
+    "descripcion": "Ubicados en Pastaza y Morona Santiago.",
+    "puntos_interes": [
+      {
+        "nombre": "Reserva Kapawi",
+        "tipo": "Ecoturismo",
+        "lat": -2.5330,
+        "lng": -76.8500
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Andoa",
+    "region": "Amazonía",
+    "lengua": "Andoa",
+    "latitud": -2.3000,
+    "longitud": -76.5000,
+    "descripcion": "Ubicados en Pastaza.",
+    "puntos_interes": [
+      {
+        "nombre": "Cuenca del Río Bobonaza",
+        "tipo": "Sitio Natural",
+        "lat": -2.1500,
+        "lng": -76.6500
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Cofán",
+    "region": "Amazonía",
+    "lengua": "A'ingae",
+    "latitud": 0.2000,
+    "longitud": -76.9000,
+    "descripcion": "Ubicados en Sucumbíos.",
+    "puntos_interes": [
+      {
+        "nombre": "Reserva Ecológica Cofán-Bermejo",
+        "tipo": "Reserva",
+        "lat": 0.2500,
+        "lng": -77.2000
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Siona",
+    "region": "Amazonía",
+    "lengua": "Baicoca",
+    "latitud": 0.3000,
+    "longitud": -76.8000,
+    "descripcion": "Ubicados en Sucumbíos.",
+    "puntos_interes": [
+      {
+        "nombre": "Puerto Bolívar",
+        "tipo": "Comunidad Siona",
+        "lat": -0.1160,
+        "lng": -76.1500
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Secoya",
+    "region": "Amazonía",
+    "lengua": "Paicoca",
+    "latitud": 0.3500,
+    "longitud": -76.9000,
+    "descripcion": "Ubicados en Sucumbíos.",
+    "puntos_interes": [
+      {
+        "nombre": "Reserva de Producción Faunística Cuyabeno",
+        "tipo": "Parque Nacional",
+        "lat": -0.0160,
+        "lng": -76.1500
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Shuar",
+    "region": "Amazonía",
+    "lengua": "Shuar Chicham",
+    "latitud": -3.0000,
+    "longitud": -78.0000,
+    "descripcion": "Ubicados en Morona Santiago, Zamora y Pastaza.",
+    "puntos_interes": [
+      {
+        "nombre": "Centro de Interpretación Cultural Shuar",
+        "tipo": "Centro Cultural",
+        "lat": -3.2500,
+        "lng": -78.2000
+      },
+      {
+        "nombre": "Cueva de los Tayos",
+        "tipo": "Sitio Histórico",
+        "lat": -3.0500,
+        "lng": -78.2100
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Shiwiar",
+    "region": "Amazonía",
+    "lengua": "Shiwiar Chicham",
+    "latitud": -2.4000,
+    "longitud": -76.6000,
+    "descripcion": "Ubicados en Pastaza.",
+    "puntos_interes": [
+      {
+        "nombre": "Territorio Shiwiar",
+        "tipo": "Reserva Ancestral",
+        "lat": -2.4500,
+        "lng": -76.5000
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Waorani",
+    "region": "Amazonía",
+    "lengua": "Wao Terero",
+    "latitud": -1.0000,
+    "longitud": -76.5000,
+    "descripcion": "Ubicados en Orellana, Pastaza y Napo.",
+    "puntos_interes": [
+      {
+        "nombre": "Estación de Biodiversidad Tiputini",
+        "tipo": "Centro de Investigación",
+        "lat": -0.6350,
+        "lng": -76.1470
+      },
+      {
+        "nombre": "Parque Nacional Yasuní",
+        "tipo": "Parque Nacional",
+        "lat": -0.8500,
+        "lng": -76.3500
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Zápara",
+    "region": "Amazonía",
+    "lengua": "Zápara",
+    "latitud": -1.8000,
+    "longitud": -76.6000,
+    "descripcion": "Lengua patrimonio cultural.",
+    "puntos_interes": [
+      {
+        "nombre": "Comunidad Zápara de Morete Cocha",
+        "tipo": "Patrimonio Cultural",
+        "lat": -1.9000,
+        "lng": -76.8000
+      }
+    ]
+  },
+  {
+    "nacionalidad": "Kichwa Amazónico",
+    "region": "Amazonía",
+    "lengua": "Kichwa",
+    "latitud": -1.5000,
+    "longitud": -77.0000,
+    "descripcion": "Ubicados en Napo y Pastaza.",
+    "puntos_interes": [
+      {
+        "nombre": "Centro de Interpretación Napo Wildlife Centre",
+        "tipo": "Ecoturismo",
+        "lat": -0.7160,
+        "lng": -76.4330
+      },
+      {
+        "nombre": "Museo de Arqueología del Puyo",
+        "tipo": "Museo",
+        "lat": -1.4830,
+        "lng": -77.9970
+      }
+    ]
+  }
+]
