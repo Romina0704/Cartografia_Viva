@@ -57,6 +57,27 @@
     </LinearLayout>
 
     <!-- ═══════════════════════════════════════════
+         BOTÓN DADO (Mini Juego - Izquierda)
+    ═══════════════════════════════════════════ -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_random_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="280dp"
+        app:layout_anchor="@+id/bottom_panel"
+        app:layout_anchorGravity="top|start"
+        app:backgroundTint="#FFD4462B"
+        app:iconTint="#FFFFFFFF"
+        android:text="¡AZAR! 🎲"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:contentDescription="Lanzar dado"
+        android:elevation="6dp" />
+
+    <!-- ═══════════════════════════════════════════
          BOTÓN UBICACIÓN (flotante derecha)
     ═══════════════════════════════════════════ -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
