@@ -73,20 +73,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+      //  Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         tvNationalityName = findViewById(R.id.tv_nationality_name);
-        tvNarrativeTitle = findViewById(R.id.tv_narrative_title);
+       // tvNarrativeTitle = findViewById(R.id.tv_narrative_title);
         tvNarrativeDescription = findViewById(R.id.tv_narrative_description);
 
-        Button btnVerPruebas = findViewById(R.id.btn_ver_pruebas);
-        if (btnVerPruebas != null) {
-            btnVerPruebas.setOnClickListener(v -> {
-                Intent intent = new Intent(MainActivity.this, ListaPruebasActivity.class);
-                listaActivityResultLauncher.launch(intent);
-            });
-        }
+       // Button btnVerPruebas = findViewById(R.id.btn_ver_pruebas);
+       // if (btnVerPruebas != null) {
+         //   btnVerPruebas.setOnClickListener(v -> {
+             //   Intent intent = new Intent(MainActivity.this, ListaPruebasActivity.class);
+            //    listaActivityResultLauncher.launch(intent);
+          //  });
+       // }
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

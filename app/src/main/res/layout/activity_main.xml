@@ -1,65 +1,451 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#F2EDE4">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:titleTextColor="@android:color/white" />
-
+    <!-- ═══════════════════════════════════════════
+         MAPA PRINCIPAL (ocupa toda la pantalla)
+    ═══════════════════════════════════════════ -->
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent" />
 
+    <!-- ═══════════════════════════════════════════
+         HEADER FLOTANTE (encima del mapa)
+    ═══════════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:background="#F5F5F5">
+        android:layout_gravity="top">
 
-        <TextView
-            android:id="@+id/tv_nationality_name"
+        <!-- Barra de título -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/select_ethnicity"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:orientation="horizontal"
+            android:background="#CC5C3A1A"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/tv_narrative_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/information"
-            android:textSize="16sp"
-            android:textColor="?attr/colorPrimary"
-            android:layout_marginTop="4dp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CARTOGRAFÍA VIVA"
+                android:textColor="#FFE8C97A"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15"
+                android:fontFamily="serif" />
 
-        <TextView
-            android:id="@+id/tv_narrative_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tap_marker_instruction"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXPLORANDO ECUADOR"
+                android:textColor="#CCFFF8E7"
+                android:textSize="10sp"
+                android:letterSpacing="0.1" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_ver_pruebas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Ver Lista de Pruebas"
-            android:backgroundTint="?attr/colorPrimary"
-            android:textColor="@android:color/white" />
     </LinearLayout>
 
-</LinearLayout>
+    <!-- ═══════════════════════════════════════════
+         BOTÓN UBICACIÓN (flotante derecha)
+    ═══════════════════════════════════════════ -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="280dp"
+        app:layout_anchor="@+id/bottom_panel"
+        app:layout_anchorGravity="top|end"
+        app:backgroundTint="#FF6B3D0F"
+        app:tint="#FFFFFFFF"
+        app:fabSize="mini"
+        android:src="@android:drawable/ic_menu_mylocation"
+        android:contentDescription="Mi ubicación"
+        android:elevation="6dp" />
+
+    <!-- ═══════════════════════════════════════════
+         PANEL INFERIOR - INFORMACIÓN DE COMUNIDAD
+         (BottomSheet estilo fijo)
+    ═══════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/bottom_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:elevation="12dp">
+
+        <!-- ── Etiqueta "Panel de Información Dinámica" ── -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="-1dp"
+            android:text="  Panel de Información Dinámica  "
+            android:textColor="#FFFFFFFF"
+            android:textSize="10sp"
+            android:letterSpacing="0.08"
+            android:background="#FF8B5E2F"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="12dp" />
+
+        <!-- ── Card principal del panel ── -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FFF8F0E3"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="14dp"
+                android:paddingBottom="8dp"
+                android:paddingHorizontal="16dp">
+
+                <!-- Título de la comunidad -->
+                <TextView
+                    android:id="@+id/tv_community_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="COMMUNIDAD ACHUAR – WAMPU"
+                    android:textColor="#FF5C3A1A"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.06"
+                    android:fontFamily="serif"
+                    android:background="#22C8A96A"
+                    android:paddingVertical="4dp"
+                    android:paddingHorizontal="8dp" />
+
+                <!-- Fila: imagen + datos -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <!-- Foto de la comunidad -->
+                    <ImageView
+                        android:id="@+id/iv_community_photo"
+                        android:layout_width="90dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/placeholder_community"
+                        android:background="#FFD4B896"
+                        android:contentDescription="Foto de la comunidad" />
+
+                    <!-- Datos de la comunidad -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="12dp">
+
+                        <TextView
+                            android:id="@+id/tv_nationality_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nacionalidad: Achuar"
+                            android:textColor="#FF3E1F0A"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ubicación: Riberas del río Kapawari."
+                            android:textColor="#FF6B4A2A"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:id="@+id/tv_population"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Población Est.: 450."
+                            android:textColor="#FF6B4A2A"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:id="@+id/tv_narrative_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Importancia: Centro cultural y saberes ancestrales de la selva ecuatoriana."
+                            android:textColor="#FF6B4A2A"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ── Controles de audio / narración / foto ── -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical">
+
+                    <!-- Player de música ancestral -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:background="#FF4A2C0A"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@android:drawable/ic_media_play"
+                            app:tint="#FFFFE8A0"
+                            android:contentDescription="Ícono música" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Música Ancestral"
+                            android:textColor="#FFFFE8A0"
+                            android:textSize="10sp"
+                            android:layout_marginStart="6dp" />
+
+                        <!-- Controles de reproducción -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="end|center_vertical">
+
+                            <ImageButton
+                                android:id="@+id/btn_prev"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@android:drawable/ic_media_previous"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                app:tint="#FFFFE8A0"
+                                android:contentDescription="Anterior" />
+
+                            <ImageButton
+                                android:id="@+id/btn_play_music"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:src="@android:drawable/ic_media_play"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                app:tint="#FFFFFFD0"
+                                android:layout_marginHorizontal="4dp"
+                                android:contentDescription="Reproducir" />
+
+                            <ImageButton
+                                android:id="@+id/btn_next"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@android:drawable/ic_media_next"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                app:tint="#FFFFE8A0"
+                                android:contentDescription="Siguiente" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Botón Narración del Shamán -->
+                    <LinearLayout
+                        android:id="@+id/btn_narration"
+                        android:layout_width="60dp"
+                        android:layout_height="42dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="#FF6B3D0F"
+                        android:layout_marginEnd="8dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_btn_speak_now"
+                            app:tint="#FFFFFFFF"
+                            android:contentDescription="Narración" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Narración\ndel Shamán"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="8sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <!-- Botón Fotografías -->
+                    <LinearLayout
+                        android:id="@+id/btn_photos"
+                        android:layout_width="60dp"
+                        android:layout_height="42dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="#FF8B5E2F">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_menu_gallery"
+                            app:tint="#FFFFFFFF"
+                            android:contentDescription="Fotografías" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fotos"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="8sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- ── Separador ── -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#33A07840"
+                    android:layout_marginVertical="10dp" />
+
+                <!-- ── Cálculo de distancia ── -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CÁLCULO DE DISTANCIA"
+                    android:textColor="#FF8B5E2F"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_origin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tu ubicación: Quito\n→ Wampu (Achuar)"
+                        android:textColor="#FF5C3A1A"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="#FF4A2C0A"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp">
+
+                        <TextView
+                            android:id="@+id/tv_distance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Distancia: 365 km"
+                            android:textColor="#FFFFE8A0"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Aprox. 6h por tierra"
+                            android:textColor="#CCFFECB0"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ── Barra de navegación inferior ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:background="#FF3E1F0A"
+            android:baselineAligned="false">
+
+            <!-- Tab: Explorar -->
+            <LinearLayout
+                android:id="@+id/tab_explorar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#FF5C3A1A">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@android:drawable/ic_menu_mapmode"
+                    app:tint="#FFFFE8A0"
+                    android:contentDescription="Explorar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Explorar"
+                    android:textColor="#FFFFE8A0"
+                    android:textSize="10sp"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <!-- Tab: Nacionalidades -->
+            <LinearLayout
+                android:id="@+id/tab_nacionalidades"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    app:tint="#CCFFEEDD"
+                    android:contentDescription="Nacionalidades" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nacionalidades"
+                    android:textColor="#CCFFEEDD"
+                    android:textSize="9sp"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
