@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final String TAG = "MainActivity";
     private GoogleMap mMap;
     private TextView tvNationalityName, tvNarrativeDescription, tvLocation, tvPopulation, tvCommunityLabel, tvDistance;
+    private ImageView ivCommunityPhoto;
     private List<Etnia> listaEtnias;
     private final List<Marker> marcadoresPOIs = new ArrayList<>();
     private Polyline lineaRuta;
@@ -59,18 +60,32 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private MediaPlayer mediaPlayer;
     private ImageButton btnPlayMusic;
     private Etnia etniaSeleccionada;
-
+    private androidx.viewpager2.widget.ViewPager2 vpCommunityPhotos;
+    private TextView tvPhotoCounter;
+    private ImageButton btnPhotoPrev, btnPhotoNext;
+    private int mapTypeIndex = 0;
+    private final int[] mapTypes = {
+            GoogleMap.MAP_TYPE_NORMAL,
+            GoogleMap.MAP_TYPE_SATELLITE,
+            GoogleMap.MAP_TYPE_HYBRID
+    };
+    private final String[] mapTypeNames = {"Normal", "Satélite", "Híbrido"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        vpCommunityPhotos = findViewById(R.id.vp_community_photos);
+        tvPhotoCounter    = findViewById(R.id.tv_photo_counter);
+        btnPhotoPrev      = findViewById(R.id.btn_photo_prev);
+        btnPhotoNext      = findViewById(R.id.btn_photo_next);
         tvNationalityName = findViewById(R.id.tv_nationality_name);
         tvNarrativeDescription = findViewById(R.id.tv_narrative_description);
         tvLocation = findViewById(R.id.tv_location);
         tvPopulation = findViewById(R.id.tv_population);
         tvCommunityLabel = findViewById(R.id.tv_community_label);
         tvDistance = findViewById(R.id.tv_distance);
+       //ivCommunityPhoto = findViewById(R.id.iv_community_photo);
         btnPlayMusic = findViewById(R.id.btn_play_music);
 
         if (btnPlayMusic != null) {
@@ -93,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-
-        cargarDatosDesdeJSON();
+// En onCreate
+        findViewById(R.id.fab_map_type).setOnClickListener(v -> cambiarTipoMapa());        cargarDatosDesdeJSON();
     }
 
     private void cargarDatosDesdeJSON() {
@@ -107,7 +122,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.e(TAG, "Error cargando etnias.json", ex);
         }
     }
-
+    private void cambiarTipoMapa() {
+        if (mMap == null) return;
+        mapTypeIndex = (mapTypeIndex + 1) % mapTypes.length;
+        mMap.setMapType(mapTypes[mapTypeIndex]);
+        Toast.makeText(this, "Mapa: " + mapTypeNames[mapTypeIndex], Toast.LENGTH_SHORT).show();
+    }
     private void iniciarMiniJuego() {
         if (listaEtnias == null || listaEtnias.isEmpty()) return;
 
@@ -188,7 +208,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    // ... Resto de métodos de la API y Mapa ...
     private void consumirApi() {
         String url = "https://faceapp-cfc13-default-rtdb.firebaseio.com/.json";
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -270,6 +289,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng ecuador = new LatLng(-1.83, -78.18);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ecuador, 6.5f));
         consumirApi();
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        mapTypeIndex = 1;
     }
 
     @Override
@@ -319,6 +340,159 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         tvPopulation.setText("Población Est.: " + (etnia.poblacion != null ? etnia.poblacion : "No disponible"));
         tvNarrativeDescription.setText(etnia.descripcion + "\n\nLengua: " + etnia.lengua);
         tvDistance.setText(String.format(Locale.US, "Distancia: %.2f km", results[0] / 1000));
+        cargarFotosEtnia(etnia.nacionalidad);
+    }
+    // ══════════════════════════════════════════════════════
+// REEMPLAZA tu método cargarFotosEtnia en MainActivity
+// ══════════════════════════════════════════════════════
+
+    private void cargarFotosEtnia(String nacionalidad) {
+
+        Map<String, List<Integer>> fotosMap = new HashMap<>();
+
+        // ── COSTA ──
+        fotosMap.put("Awá", Arrays.asList(
+                R.drawable.awa_01, R.drawable.awa_02, R.drawable.awa_03,
+                R.drawable.awa_04, R.drawable.awa_05));
+
+        fotosMap.put("Chachi", Arrays.asList(
+                R.drawable.chachi_01, R.drawable.chachi_02, R.drawable.chachi_03,
+                R.drawable.chachi_04, R.drawable.chachi_05));
+
+        fotosMap.put("Épera", Arrays.asList(
+                R.drawable.epera_01, R.drawable.epera_02, R.drawable.epera_03,
+                R.drawable.epera_04, R.drawable.epera_05));
+
+        fotosMap.put("Tsáchila", Arrays.asList(
+                R.drawable.tsachila_01, R.drawable.tsachila_02, R.drawable.tsachila_03,
+                R.drawable.tsachila_04, R.drawable.tsachila_05));
+
+        // ── SIERRA ──
+
+        fotosMap.put("Otavalo", Arrays.asList(
+                R.drawable.otavalo_01, R.drawable.otavalo_02, R.drawable.otavalo_03,
+                R.drawable.otavalo_04, R.drawable.otavalo_05));
+
+        fotosMap.put("Kayambi", Arrays.asList(
+                R.drawable.kayambi_01, R.drawable.kayambi_02, R.drawable.kayambi_03,
+                R.drawable.kayambi_04, R.drawable.kayambi_05));
+
+        fotosMap.put("Kitu Kara", Arrays.asList(
+                R.drawable.kitu_kara_01, R.drawable.kitu_kara_02, R.drawable.kitu_kara_03,
+                R.drawable.kitu_kara_04, R.drawable.kitu_kara_05));
+
+        fotosMap.put("Panzaleo", Arrays.asList(
+                R.drawable.panzaleo_01, R.drawable.panzaleo_02, R.drawable.panzaleo_03,
+                R.drawable.panzaleo_04, R.drawable.panzaleo_05));
+
+        fotosMap.put("Chibuleo", Arrays.asList(
+                R.drawable.chibuleo_01, R.drawable.chibuleo_02, R.drawable.chibuleo_03,
+                R.drawable.chibuleo_04, R.drawable.chibuleo_05));
+
+        fotosMap.put("Salasaka", Arrays.asList(
+                R.drawable.salaka_01, R.drawable.salaka_02, R.drawable.salaka_03,
+                R.drawable.salaka_04, R.drawable.salaka_05));
+
+        fotosMap.put("Waranka", Arrays.asList(
+                R.drawable.waranka_01, R.drawable.waranka_02, R.drawable.waranka_03,
+                R.drawable.waranka_04));
+
+        fotosMap.put("Puruhá", Arrays.asList(
+                R.drawable.puruha_01, R.drawable.puruha_02, R.drawable.puruha_03,
+                R.drawable.puruha_04, R.drawable.puruha_05));
+
+        fotosMap.put("Kañari", Arrays.asList(
+                R.drawable.kanari_01, R.drawable.kanari_02, R.drawable.kanari_03,
+                R.drawable.kanari_04, R.drawable.kanari_05));
+
+        fotosMap.put("Saraguro", Arrays.asList(
+                R.drawable.saraguro_01, R.drawable.saraguro_02, R.drawable.saraguro_03,
+                R.drawable.saraguro_04, R.drawable.saraguro_05));
+
+        // ── AMAZONÍA ──
+        fotosMap.put("Achuar", Arrays.asList(
+                R.drawable.achuar_01, R.drawable.achuar_02, R.drawable.achuar_03,
+                R.drawable.achuar_04, R.drawable.achuar_05));
+
+        fotosMap.put("Andoa", Arrays.asList(
+                R.drawable.andoa_01, R.drawable.andoa_02, R.drawable.andoa_03,
+                R.drawable.andoa_04, R.drawable.andoa_05));
+
+        fotosMap.put("Cofán", Arrays.asList(
+                R.drawable.cofan_01, R.drawable.cofan_02, R.drawable.cofan_03,
+                R.drawable.cofan_04, R.drawable.cofan_05));
+
+        fotosMap.put("Siona", Arrays.asList(
+                R.drawable.siona_01, R.drawable.siona_02, R.drawable.siona_03,
+                R.drawable.siona_04, R.drawable.siona_05));
+
+        fotosMap.put("Secoya", Arrays.asList(
+                R.drawable.secoya_01, R.drawable.secoya_02, R.drawable.secoya_03,
+                R.drawable.secoya_04, R.drawable.secoya_05));
+
+        fotosMap.put("Shuar", Arrays.asList(
+                R.drawable.shuar_01, R.drawable.shuar_02, R.drawable.shuar_03,
+                R.drawable.shuar_04, R.drawable.shuar_05));
+
+        fotosMap.put("Shiwiar", Arrays.asList(
+                R.drawable.shiwiar_01, R.drawable.shiwiar_02, R.drawable.shiwiar_03,
+                R.drawable.shiwiar_04, R.drawable.shiwiar_05));
+
+        fotosMap.put("Waorani", Arrays.asList(
+                R.drawable.waorani_01, R.drawable.waorani_02, R.drawable.waorani_03,
+                R.drawable.waorani_04, R.drawable.waorani_05));
+
+        fotosMap.put("Zápara", Arrays.asList(
+                R.drawable.zapara_01, R.drawable.zapara_02, R.drawable.zapara_03,
+                R.drawable.zapara_04, R.drawable.zapara_05));
+
+        fotosMap.put("Kichwa de la Amazonia", Arrays.asList(
+                R.drawable.kichwa_01, R.drawable.kichwa_02, R.drawable.kichwa_03,
+                R.drawable.kichwa_04, R.drawable.kichwa_05));
+
+        // ── Buscar coincidencia exacta primero, luego parcial ──
+        List<Integer> fotos = fotosMap.get(nacionalidad);
+
+        if (fotos == null) {
+            // Búsqueda parcial por si acaso
+            for (Map.Entry<String, List<Integer>> entry : fotosMap.entrySet()) {
+                if (nacionalidad.toLowerCase().contains(entry.getKey().toLowerCase()) ||
+                        entry.getKey().toLowerCase().contains(nacionalidad.toLowerCase())) {
+                    fotos = entry.getValue();
+                    break;
+                }
+            }
+        }
+
+        // Si no encuentra nada, mostrar placeholder
+        if (fotos == null) {
+            fotos = Arrays.asList(R.drawable.placeholder_community);
+        }
+
+        final List<Integer> fotosFinal = fotos;
+        final int total = fotosFinal.size();
+
+        PhotoAdapter adapter = new PhotoAdapter(this, fotosFinal);
+        vpCommunityPhotos.setAdapter(adapter);
+        tvPhotoCounter.setText("1/" + total);
+
+        vpCommunityPhotos.registerOnPageChangeCallback(
+                new androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        tvPhotoCounter.setText((position + 1) + "/" + total);
+                    }
+                });
+
+        btnPhotoNext.setOnClickListener(v -> {
+            int next = vpCommunityPhotos.getCurrentItem() + 1;
+            if (next < total) vpCommunityPhotos.setCurrentItem(next);
+        });
+
+        btnPhotoPrev.setOnClickListener(v -> {
+            int prev = vpCommunityPhotos.getCurrentItem() - 1;
+            if (prev >= 0) vpCommunityPhotos.setCurrentItem(prev);
+        });
     }
 
     private void mostrarPuntosDeInteres(Etnia etnia) {

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Cara del dado -->
+    <path
+        android:fillColor="#FFFFE8A0"
+        android:pathData="M5,3h14c1.1,0 2,0.9 2,2v14c0,1.1 -0.9,2 -2,2H5c-1.1,0 -2,-0.9 -2,-2V5C3,3.9 3.9,3 5,3z" />
+
+    <!-- Punto centro -->
+    <path
+        android:fillColor="#FF3E1F0A"
+        android:pathData="M12,10.5m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0" />
+
+    <!-- Punto arriba izquierda -->
+    <path
+        android:fillColor="#FF3E1F0A"
+        android:pathData="M7.5,7m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0" />
+
+    <!-- Punto arriba derecha -->
+    <path
+        android:fillColor="#FF3E1F0A"
+        android:pathData="M16.5,7m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0" />
+
+    <!-- Punto abajo izquierda -->
+    <path
+        android:fillColor="#FF3E1F0A"
+        android:pathData="M7.5,17m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0" />
+
+    <!-- Punto abajo derecha -->
+    <path
+        android:fillColor="#FF3E1F0A"
+        android:pathData="M16.5,17m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0" />
+
+</vector>
