@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FA000000">
+
+    <!-- ViewPager2 para permitir deslizar entre fotos en pantalla completa -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_full_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Indicador de posición (ej: 2/5) -->
+    <TextView
+        android:id="@+id/tv_full_photo_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:background="#88000000"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:text="1/5"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <!-- Botón de cerrar -->
+    <ImageButton
+        android:id="@+id/btn_close_viewer"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:tint="#FFFFFF"
+        android:elevation="10dp"
+        android:contentDescription="Cerrar visor" />
+
+</FrameLayout>

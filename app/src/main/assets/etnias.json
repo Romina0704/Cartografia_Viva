@@ -79,7 +79,7 @@
     "latitud": -1.5000,
     "longitud": -78.5000,
     "descripcion": "La nacionalidad más numerosa. Viven principalmente de la agricultura, ganadería y artesanía. Mantienen una fuerte cosmovisión andina.",
-    "musica_recurso": "musica_kichwa_sierra",
+    "musica_recurso": "musica_kichwa_de_la_sierra",
     "puntos_interes": []
   },
   {
@@ -126,7 +126,7 @@
     "latitud": -0.2000,
     "longitud": -78.5000,
     "descripcion": "Ubicados en Quito. Su origen es uno de los más antiguos de la región andina.",
-    "musica_recurso": "musica_kitukara",
+    "musica_recurso": "musica_kitu_kara",
     "puntos_interes": []
   },
   {
@@ -320,7 +320,7 @@
     "latitud": -1.5000,
     "longitud": -77.0000,
     "descripcion": "Viven en Napo y Pastaza. Su vida combina tradición y modernidad.",
-    "musica_recurso": "musica_kichwa_amazonia",
+    "musica_recurso": "musica_kichwa_amazonico",
     "puntos_interes": []
   }
 ]
